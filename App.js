@@ -1,56 +1,51 @@
-import { useState } from "react";
+import * as Location from 'expo-location';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
-export default function Login() {
-  const [usuario, setUsuario] = useState("");
-  const [password, setPassword] = useState("");
+ 
 
-  // 🔹 Usuario y contraseña correctos
-  const usuarioCorrecto = "admin";
-  const passwordCorrecto = "1234";
+export default function App() {
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (usuario === usuarioCorrecto && password === passwordCorrecto) {
-      alert(`✅ Bienvenido ${usuario}`);
-    } else {
-      alert("❌ Usuario o contraseña incorrectos");
+  const buscaLocation = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      return Alert.alert('Permiso denegado')
     }
-  };
+    const location= await Location.getCurrentPositionAsync({})
+    console.log(location)
+}
+
+  useEffect(() => {
+    buscaLocation();
+  })
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-2xl shadow-lg w-80"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-
-        <label className="block mb-2">Usuario:</label>
-        <input
-          type="text"
-          value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          className="w-full border p-2 rounded mb-4"
-          required
+    <View style={styles.container}>
+      <Text>Open up App.js to start working on your app!</Text>
+      <MapView style={styles.mapa}>
+        <Marker
+          coordinate={{latitude: 23.752388, longitude: -999.142277}}
+          title="El Estarbocks"
+          description="Esto es el Estarbocks"
         />
+      </MapView>
 
-        <label className="block mb-2">Contraseña:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full border p-2 rounded mb-4"
-          required
-        />
-
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
-          Ingresar
-        </button>
-      </form>
-    </div>
+      <StatusBar style="auto" />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  mapa: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
