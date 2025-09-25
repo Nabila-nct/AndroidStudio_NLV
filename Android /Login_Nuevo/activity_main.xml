@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".MainActivity"
+  android:background="@android:color/white">
+
+  <!-- Título -->
+  <TextView
+    android:id="@+id/tvTitulo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Iniciar Sesión"
+    android:textSize="22sp"
+    android:textStyle="bold"
+    android:textColor="@android:color/black"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="60dp"/>
+
+  <!-- Usuario -->
+  <EditText
+    android:id="@+id/etUsername"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="Username"
+    android:inputType="text"
+    android:padding="12dp"
+    android:background="@android:drawable/edit_text"
+    app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="40dp"
+    android:layout_marginHorizontal="40dp"/>
+
+  <!-- Contraseña -->
+  <EditText
+    android:id="@+id/etPassword"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="Password"
+    android:inputType="textPassword"
+    android:padding="12dp"
+    android:background="@android:drawable/edit_text"
+    app:layout_constraintTop_toBottomOf="@id/etUsername"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="40dp"/>
+
+  <!-- Botón Login -->
+  <Button
+    android:id="@+id/btnLogin"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="LOGIN"
+    android:backgroundTint="#673AB7"
+    android:textColor="@android:color/white"
+    app:layout_constraintTop_toBottomOf="@id/etPassword"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/btnCancel"
+    android:layout_marginTop="40dp"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="10dp"/>
+
+  <!-- Botón Cancelar -->
+  <Button
+    android:id="@+id/btnCancel"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="CANCELAR"
+    android:backgroundTint="#9E9E9E"
+    android:textColor="@android:color/white"
+    app:layout_constraintTop_toBottomOf="@id/etPassword"
+    app:layout_constraintStart_toEndOf="@id/btnLogin"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginTop="40dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="40dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
